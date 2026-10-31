@@ -1,8 +1,8 @@
 {
   "title": "Geotechnical Earthquake Engineering",
   "slug": "geotechnical-earthquake",
-  "number": "02",
+  "number": "04",
   "summary": "Soil–structure response under dynamic and seismic loading",
   "image": "images/earthquake.jpg",
-  "order": 2
+  "order": 4
 }

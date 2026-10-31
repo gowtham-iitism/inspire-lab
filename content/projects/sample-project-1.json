@@ -1,0 +1,9 @@
+{
+  "title": "Add featured project",
+  "slug": "sample-project-1",
+  "status": "Ongoing",
+  "summary": "Replace this starter entry with a verified project description.",
+  "image": "/images/project-placeholder.jpg",
+  "collaborators": "",
+  "order": 1
+}

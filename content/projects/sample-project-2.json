@@ -1,0 +1,9 @@
+{
+  "title": "Add second project",
+  "slug": "sample-project-2",
+  "status": "Ongoing",
+  "summary": "Replace this starter entry with a verified project description.",
+  "image": "/images/project-placeholder.jpg",
+  "collaborators": "",
+  "order": 2
+}

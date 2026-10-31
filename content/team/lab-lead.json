@@ -1,0 +1,9 @@
+{
+  "name": "Add faculty lead name",
+  "slug": "lab-lead",
+  "role": "Principal Investigator",
+  "bio": "Add a short professional biography.",
+  "photo": "/images/person-placeholder.jpg",
+  "email": "",
+  "order": 1
+}

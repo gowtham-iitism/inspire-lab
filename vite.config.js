@@ -1,2 +1,2 @@
 import { defineConfig } from "vite";
-export default defineConfig({ base: process.env.GITHUB_ACTIONS ? "/inspire-research-group/" : "/" });
+export default defineConfig({ base: process.env.GITHUB_ACTIONS ? "/inspire-lab/" : "/" });

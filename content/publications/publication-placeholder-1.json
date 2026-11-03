@@ -1,9 +1,9 @@
 {
-  "title": "Replace with verified publication title",
+  "title": "Discussion on “Seismic Bearing Capacity of Strip Footing on Excavations Considering Soil Strength Anisotropy Using Modified Pseudo-Dynamic and Pseudo-Static Approaches” by Shabnam Shirazizadeh, Amin Keshavarz, Majid Beygi, Mohammad Saberian, Jie Li, and Ramin Vali",
   "slug": "publication-placeholder-1",
-  "authors": "Author names",
-  "venue": "Journal or conference",
-  "year": 2025,
-  "doi": "",
-  "featured": true
+  "authors": "Gowtham G., and Sahoo, J.P.",
+  "venue": "International Journal for Analytical and Numerical Geomechanics",
+  "year": 2026,
+  "doi": "https://doi.org/10.1002/nag.70223",
+  "featured": false
 }

@@ -38,7 +38,7 @@ const assetPath = (path = "") => {
   return `${BASE}${path.replace(/^\/+/, "")}`;
 };
 
-const logoPath = assetPath("images/inspire-logo.png");
+const logoPath = assetPath("images/inspire-logo2.png");
 
 const makeCard = (item, index, fallback) => {
   const image = assetPath(item.image || item.photo || fallback);

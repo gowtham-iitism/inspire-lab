@@ -26,7 +26,7 @@ img, video { max-width: 100%; }
   gap: 10px;
   background: #111a1e;
   color: #d7dedb;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: .13em;
 }
 
@@ -68,7 +68,7 @@ img, video { max-width: 100%; }
   display: flex;
   align-items: center;
   gap: 28px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -130,7 +130,7 @@ img, video { max-width: 100%; }
 
 .hero-inner small,
 .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: .19em;
   font-weight: 700;
 }

@@ -603,21 +603,54 @@ const pages = {
 
 
   // PEOPLE PAGE
-  people: () => `
+
+people: () => {
+
+  const labLead = team.filter(
+    (p) => p.category === "lab-lead"
+  );
+
+  const researchScholars = team.filter(
+    (p) => p.category === "research-scholars"
+  );
+
+  const postgraduateStudents = team.filter(
+    (p) => p.category === "postgraduate-students"
+  );
+
+  const peopleSection = (title, members) => `
+    ${members.length ? `
+      <section class="section people-section">
+
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">OUR PEOPLE</div>
+            <h2>${title}</h2>
+          </div>
+        </div>
+
+        <div class="people-grid">
+          ${members.map(person).join("")}
+        </div>
+
+      </section>
+    ` : ""}
+  `;
+
+  return `
     ${intro(
       "THE PEOPLE BEHIND THE WORK",
-      "Curious minds.<br><em>Shared purpose.</em>",
-      "Meet the researchers, students and collaborators behind INSpIRE."
+      "Our <em>people.</em>",
+      "Meet the researchers and students behind INSpIRE Lab."
     )}
 
-    <section class="section">
+    ${peopleSection("Lab Lead", labLead)}
 
-      <div class="people-grid">
-        ${team.map(person).join("")}
-      </div>
+    ${peopleSection("Research Scholars", researchScholars)}
 
-    </section>
-  `,
+    ${peopleSection("Postgraduate Students", postgraduateStudents)}
+  `;
+},
 
 
   // NEWS PAGE

@@ -706,7 +706,17 @@ people: () => {
       "A collaborative group of researchers and students working towards sustainable and resilient geotechnical infrastructure."
     )}
 
-    
+    <!-- LAB LEAD -->
+
+    ${labLead.length ? `
+      <section class="section people-directory">
+
+        
+
+        ${labLead.map(leadProfile).join("")}
+
+      </section>
+    ` : ""}
 
     <!-- RESEARCH SCHOLARS -->
 

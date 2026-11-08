@@ -602,10 +602,12 @@ const pages = {
   `,
 
 
-  // PEOPLE PAGE
+  
+// PEOPLE PAGE — ACADEMIC TEAM DIRECTORY
 
 people: () => {
 
+  // Organise team members by category
   const labLead = team.filter(
     (p) => p.category === "lab-lead"
   );
@@ -618,40 +620,122 @@ people: () => {
     (p) => p.category === "postgraduate-students"
   );
 
-  const peopleSection = (title, members) => `
-    ${members.length ? `
-      <section class="section people-section">
+  // Featured profile for the lab lead
+  const leadProfile = (p) => `
+    <article class="lead-profile">
+
+      <div class="lead-photo">
+        <img
+          src="${esc(asset(p.photo || "images/person-placeholder.jpg"))}"
+          alt="${esc(p.name || "")}"
+        >
+      </div>
+
+      <div class="lead-details">
+
+        <span class="person-label">LAB LEAD</span>
+
+        <h2>${esc(p.name || "")}</h2>
+
+        <h4>${esc(p.role || "")}</h4>
+
+        <p>${esc(p.bio || "")}</p>
+
+        <div class="profile-links">
+
+          ${p.website ? `
+            <a href="${esc(p.website)}"
+               target="_blank" rel="noopener">
+              Website ↗
+            </a>
+          ` : ""}
+
+          ${p.scholarUrl ? `
+            <a href="${esc(p.scholarUrl)}"
+               target="_blank" rel="noopener">
+              Google Scholar ↗
+            </a>
+          ` : ""}
+
+          ${p.email ? `
+            <a href="mailto:${esc(p.email)}">
+              Email ↗
+            </a>
+          ` : ""}
+
+        </div>
+
+      </div>
+
+    </article>
+  `;
+
+  // Reusable section for scholars and students
+  const memberSection = (title, subtitle, members) => {
+
+    if (!members.length) return "";
+
+    return `
+      <section class="section people-directory">
 
         <div class="section-head">
+
           <div>
             <div class="eyebrow">OUR PEOPLE</div>
             <h2>${title}</h2>
+            <p>${subtitle}</p>
           </div>
+
         </div>
 
         <div class="people-grid">
+
           ${members.map(person).join("")}
+
         </div>
 
       </section>
-    ` : ""}
-  `;
+    `;
+  };
 
   return `
+
     ${intro(
-      "THE PEOPLE BEHIND THE WORK",
-      "Our <em>people.</em>",
-      "Meet the researchers and students behind INSpIRE Lab."
+      "THE PEOPLE BEHIND THE RESEARCH",
+      "Meet the <em>INSpIRE Team.</em>",
+      "A collaborative group of researchers and students working towards sustainable and resilient geotechnical infrastructure."
     )}
 
-    ${peopleSection("Lab Lead", labLead)}
+    <!-- LAB LEAD -->
 
-    ${peopleSection("Research Scholars", researchScholars)}
+    ${labLead.length ? `
+      <section class="section people-directory">
 
-    ${peopleSection("Postgraduate Students", postgraduateStudents)}
+        <div class="eyebrow">01 / LAB LEAD</div>
+
+        ${labLead.map(leadProfile).join("")}
+
+      </section>
+    ` : ""}
+
+    <!-- RESEARCH SCHOLARS -->
+
+    ${memberSection(
+      "Research Scholars",
+      "Doctoral researchers advancing knowledge through scientific investigation.",
+      researchScholars
+    )}
+
+    <!-- POSTGRADUATE STUDENTS -->
+
+    ${memberSection(
+      "Postgraduate Students",
+      "Young researchers exploring new ideas and engineering solutions.",
+      postgraduateStudents
+    )}
+
   `;
 },
-
 
   // NEWS PAGE
   news: () => `

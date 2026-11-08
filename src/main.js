@@ -55,7 +55,7 @@ const asset = (p = "") =>
       ? p
       : BASE + p.replace(/^\/+/, "");
 
-const logo = asset("images/inspire-logo.png");
+const logo = asset("images/inspire-logo2.png");
 
 // --------------------------------------------------
 // 4. NAVIGATION LINKS

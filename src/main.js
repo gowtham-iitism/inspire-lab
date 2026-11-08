@@ -1,14 +1,16 @@
+
 import "./style.css";
 import homepage from "../content/homepage.json";
 
-// --------------------------------------------------
+// ==================================================
 // 1. SITE CONFIGURATION
-// --------------------------------------------------
+// ==================================================
 
 const BASE = "/inspire-lab/";
 
 const page = document.body.dataset.page || "home";
 
+// Load all content JSON files
 const files = import.meta.glob(
   "../content/{research,projects,publications,team,news}/*.json",
   {
@@ -17,9 +19,9 @@ const files = import.meta.glob(
   }
 );
 
-// --------------------------------------------------
-// 2. LOAD CONTENT FROM JSON FILES
-// --------------------------------------------------
+// ==================================================
+// 2. CONTENT DATA
+// ==================================================
 
 const get = (folder) =>
   Object.entries(files)
@@ -33,11 +35,10 @@ const publications = get("publications");
 const team = get("team");
 const news = get("news");
 
-// --------------------------------------------------
+// ==================================================
 // 3. HELPER FUNCTIONS
-// --------------------------------------------------
+// ==================================================
 
-// Escape HTML characters to prevent unwanted HTML injection.
 const esc = (s = "") =>
   String(s).replace(/[&<>"']/g, (c) => ({
     "&": "&amp;",
@@ -47,7 +48,6 @@ const esc = (s = "") =>
     "'": "&#39;",
   }[c]));
 
-// Convert relative image paths into website asset paths.
 const asset = (p = "") =>
   !p
     ? ""
@@ -55,11 +55,11 @@ const asset = (p = "") =>
       ? p
       : BASE + p.replace(/^\/+/, "");
 
-const logo = asset("images/inspire-logo.png");
+const logo = asset("images/inspire-logo2.png");
 
-// --------------------------------------------------
-// 4. NAVIGATION LINKS
-// --------------------------------------------------
+// ==================================================
+// 4. NAVIGATION
+// ==================================================
 
 const nav = [
   ["Home", "index.html", "home"],
@@ -72,9 +72,9 @@ const nav = [
   ["Contact", "contact.html", "contact"],
 ];
 
-// --------------------------------------------------
+// ==================================================
 // 5. HEADER
-// --------------------------------------------------
+// ==================================================
 
 const header = `
   <div class="topline">
@@ -101,28 +101,24 @@ const header = `
     </button>
 
     <nav>
-      ${nav
-        .map(
-          ([name, href, id]) => `
-            <a
-              class="${page === id ? "active" : ""} ${
-                id === "contact" ? "navbtn" : ""
-              }"
-              href="${BASE}${href}"
-            >
-              ${name}
-            </a>
-          `
-        )
-        .join("")}
+      ${nav.map(([name, href, id]) => `
+        <a
+          class="${page === id ? "active" : ""} ${
+            id === "contact" ? "navbtn" : ""
+          }"
+          href="${BASE}${href}"
+        >
+          ${name}
+        </a>
+      `).join("")}
     </nav>
 
   </header>
 `;
 
-// --------------------------------------------------
+// ==================================================
 // 6. FOOTER
-// --------------------------------------------------
+// ==================================================
 
 const footer = `
   <footer>
@@ -147,14 +143,9 @@ const footer = `
       <div>
         <b>EXPLORE</b>
 
-        ${nav
-          .slice(1, 7)
-          .map(
-            ([name, href]) => `
-              <a href="${BASE}${href}">${name}</a>
-            `
-          )
-          .join("")}
+        ${nav.slice(1, 7).map(([name, href]) => `
+          <a href="${BASE}${href}">${name}</a>
+        `).join("")}
       </div>
 
       <div>
@@ -178,31 +169,26 @@ const footer = `
       <div>
         <b>CONTACT</b>
 
-        ${
-          homepage.contactEmail
-            ? `
-              <a href="mailto:${esc(homepage.contactEmail)}">
-                ${esc(homepage.contactEmail)}
-              </a>
-            `
-            : ""
-        }
+        ${homepage.contactEmail ? `
+          <a href="mailto:${esc(homepage.contactEmail)}">
+            ${esc(homepage.contactEmail)}
+          </a>
+        ` : ""}
       </div>
 
     </div>
 
     <div class="copyright">
       © ${new Date().getFullYear()} INSpIRE Lab · IIT (ISM) Dhanbad
-
       <a href="${BASE}index.html">Home ↑</a>
     </div>
 
   </footer>
 `;
 
-// --------------------------------------------------
-// 7. RESEARCH, PROJECT AND NEWS CARDS
-// --------------------------------------------------
+// ==================================================
+// 7. REUSABLE CONTENT CARDS
+// ==================================================
 
 const card = (x, i, fallback) => `
   <article class="tile">
@@ -227,30 +213,23 @@ const card = (x, i, fallback) => `
         ${esc(x.summary || x.bio || x.description || "")}
       </p>
 
-      ${
-        x.url
-          ? `
-            <a
-              class="under"
-              href="${esc(x.url)}"
-              target="_blank"
-              rel="noopener"
-            >
-              Learn more ↗
-            </a>
-          `
-          : ""
-      }
+      ${x.url ? `
+        <a
+          class="under"
+          href="${esc(x.url)}"
+          target="_blank"
+          rel="noopener"
+        >
+          Learn more ↗
+        </a>
+      ` : ""}
 
     </div>
 
   </article>
 `;
 
-// --------------------------------------------------
-// 8. PUBLICATION FORMAT
-// --------------------------------------------------
-
+// Publication format
 const pub = (p, i) => `
   <article>
 
@@ -261,33 +240,25 @@ const pub = (p, i) => `
 
       <p>
         ${esc(p.authors || "")}
-
         ${p.venue ? ` · ${esc(p.venue)}` : ""}
         ${p.year ? ` · ${esc(p.year)}` : ""}
 
-        ${
-          p.doi
-            ? `
-              · <a
-                  href="${esc(p.doi)}"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  DOI ↗
-                </a>
-            `
-            : ""
-        }
+        ${p.doi ? `
+          · <a
+              href="${esc(p.doi)}"
+              target="_blank"
+              rel="noopener"
+            >
+              DOI ↗
+            </a>
+        ` : ""}
       </p>
     </div>
 
   </article>
 `;
 
-// --------------------------------------------------
-// 9. TEAM MEMBER FORMAT
-// --------------------------------------------------
-
+// Team member format
 const person = (p) => `
   <article class="person">
 
@@ -305,34 +276,25 @@ const person = (p) => `
 
     <p>${esc(p.bio || "")}</p>
 
-    ${
-      p.url
-        ? `
-          <a
-            class="under"
-            href="${esc(p.url)}"
-            target="_blank"
-            rel="noopener"
-          >
-            Profile ↗
-          </a>
-        `
-        : ""
-    }
+    ${p.url ? `
+      <a
+        class="under"
+        href="${esc(p.url)}"
+        target="_blank"
+        rel="noopener"
+      >
+        Profile ↗
+      </a>
+    ` : ""}
 
   </article>
 `;
 
-// --------------------------------------------------
-// 10. INTERNAL PAGE INTRODUCTION
-// --------------------------------------------------
-
+// Internal page introduction
 const intro = (eyebrow, title, desc = "") => `
   <section class="page-hero">
 
-    <div class="eyebrow light">
-      ${eyebrow}
-    </div>
+    <div class="eyebrow light">${eyebrow}</div>
 
     <h1>${title}</h1>
 
@@ -341,11 +303,12 @@ const intro = (eyebrow, title, desc = "") => `
   </section>
 `;
 
-// --------------------------------------------------
-// 11. HOME PAGE
-// --------------------------------------------------
+// ==================================================
+// 8. HOMEPAGE — SHORT VERSION ONLY
+// ==================================================
 
 const home = () => {
+
   const poster = homepage.heroPoster
     ? asset(homepage.heroPoster)
     : "";
@@ -354,33 +317,29 @@ const home = () => {
 
   return `
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
 
     <section class="hero">
 
-      ${
-        video
-          ? `
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              poster="${esc(poster)}"
-            >
-              <source
-                src="${esc(video)}"
-                type="video/mp4"
-              >
-            </video>
-          `
-          : `
-            <div
-              class="hero-poster"
-              style="background-image:url('${esc(poster)}')"
-            ></div>
-          `
-      }
+      ${video ? `
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="${esc(poster)}"
+        >
+          <source
+            src="${esc(video)}"
+            type="video/mp4"
+          >
+        </video>
+      ` : `
+        <div
+          class="hero-poster"
+          style="background-image:url('${esc(poster)}')"
+        ></div>
+      `}
 
       <div class="shade"></div>
 
@@ -414,7 +373,7 @@ const home = () => {
     </section>
 
 
-    <!-- ABOUT SECTION -->
+    <!-- SHORT ABOUT INTRODUCTION -->
 
     <section class="section">
 
@@ -430,35 +389,15 @@ const home = () => {
         </h2>
 
         <div>
-          <p class="lead">${esc(homepage.aboutText || "")}</p>
+
+          <p class="lead">
+            ${esc(homepage.aboutText || "")}
+          </p>
 
           <a class="under" href="${BASE}about.html">
             Discover the lab ↗
           </a>
-        </div>
 
-      </div>
-
-      <div class="stats">
-
-        <div>
-          <b>01</b>
-          <span>Research-led<br>innovation</span>
-        </div>
-
-        <div>
-          <b>02</b>
-          <span>Multiscale<br>engineering</span>
-        </div>
-
-        <div>
-          <b>03</b>
-          <span>Real-world<br>impact</span>
-        </div>
-
-        <div>
-          <b>04</b>
-          <span>Collaborative<br>discovery</span>
         </div>
 
       </div>
@@ -466,7 +405,7 @@ const home = () => {
     </section>
 
 
-    <!-- RESEARCH SECTION -->
+    <!-- FEATURED RESEARCH -->
 
     <section class="section tinted">
 
@@ -474,156 +413,65 @@ const home = () => {
 
         <div>
           <div class="eyebrow">WHAT WE EXPLORE</div>
-          <h2>Research <em>frontiers.</em></h2>
+          <h2>Research <em>highlights.</em></h2>
         </div>
 
         <p>
-          Our work spans geomaterials, underground systems
-          and infrastructure exposed to complex environments.
+          Discover our research themes in geotechnical
+          and underground infrastructure.
         </p>
 
       </div>
 
       <div class="tiles">
-        ${research
-          .slice(0, 3)
-          .map((x, i) => card(x, i, "images/research-placeholder.jpg"))
-          .join("")}
+        ${research.slice(0, 3).map((x, i) =>
+          card(x, i, "images/research-placeholder.jpg")
+        ).join("")}
       </div>
 
       <a class="under" href="${BASE}research.html">
-        Explore all research ↗
+        View all research areas ↗
       </a>
 
     </section>
 
 
-    <!-- RESEARCH APPROACH SECTION -->
-
-    <section class="statement">
-
-      <div class="statement-shade"></div>
-
-      <div class="statement-inner">
-
-        <div class="eyebrow light">OUR APPROACH</div>
-
-        <h2>
-          From fundamental mechanics
-          <br>
-          to <em>resilient systems.</em>
-        </h2>
-
-        <p>
-          Experimental investigation, numerical modelling
-          and data-driven methods for complex geotechnical problems.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- PROJECTS SECTION -->
+    <!-- FEATURED PROJECTS -->
 
     <section class="section">
 
       <div class="section-head">
 
         <div>
-          <div class="eyebrow">WORK IN ACTION</div>
-          <h2>Featured <em>projects.</em></h2>
+          <div class="eyebrow">RESEARCH IN ACTION</div>
+          <h2>Selected <em>projects.</em></h2>
         </div>
 
         <p>
-          Research with practical relevance and measurable impact.
+          Explore selected research projects from INSpIRE Lab.
         </p>
 
       </div>
 
       <div class="tiles">
-        ${projects
-          .slice(0, 3)
-          .map((x, i) => card(x, i, "images/project-placeholder.jpg"))
-          .join("")}
+        ${projects.slice(0, 3).map((x, i) =>
+          card(x, i, "images/project-placeholder.jpg")
+        ).join("")}
       </div>
 
       <a class="under" href="${BASE}projects.html">
-        All projects ↗
+        View all projects ↗
       </a>
 
     </section>
 
 
-    <!-- PUBLICATIONS SECTION -->
-
-    <section class="section dark">
-
-      <div class="pub-layout">
-
-        <div>
-          <div class="eyebrow light">KNOWLEDGE & DISCOVERY</div>
-
-          <h2>
-            Ideas that
-            <br>
-            <em>move us forward.</em>
-          </h2>
-
-          <p>
-            Selected publications from the INSpIRE community.
-          </p>
-
-          <a class="outline" href="${BASE}publications.html">
-            All publications ↗
-          </a>
-        </div>
-
-        <div class="pub-list">
-          ${publications.slice(0, 3).map(pub).join("")}
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- PEOPLE SECTION -->
-
-    <section class="section tinted">
-
-      <div class="section-head">
-
-        <div>
-          <div class="eyebrow">THE PEOPLE BEHIND THE WORK</div>
-
-          <h2>
-            Curious minds.
-            <br>
-            <em>Shared purpose.</em>
-          </h2>
-        </div>
-
-        <p>Meet the people behind INSpIRE.</p>
-
-      </div>
-
-      <div class="people-grid">
-        ${team.slice(0, 4).map(person).join("")}
-      </div>
-
-      <a class="under" href="${BASE}people.html">
-        Meet the team ↗
-      </a>
-
-    </section>
-
-
-    <!-- CONTACT / JOIN SECTION -->
+    <!-- CONTACT BANNER -->
 
     <section class="join">
 
       <div>
+
         <div class="eyebrow light">BE PART OF THE JOURNEY</div>
 
         <h2>
@@ -635,6 +483,7 @@ const home = () => {
         <p>
           Interested in research, collaboration or joining the group?
         </p>
+
       </div>
 
       <a class="primary" href="${BASE}contact.html">
@@ -647,9 +496,9 @@ const home = () => {
 };
 
 
-// --------------------------------------------------
-// 12. OTHER WEBSITE PAGES
-// --------------------------------------------------
+// ==================================================
+// 9. INDIVIDUAL WEBSITE PAGES
+// ==================================================
 
 const pages = {
 
@@ -695,9 +544,9 @@ const pages = {
     <section class="section">
 
       <div class="tiles">
-        ${research
-          .map((x, i) => card(x, i, "images/research-placeholder.jpg"))
-          .join("")}
+        ${research.map((x, i) =>
+          card(x, i, "images/research-placeholder.jpg")
+        ).join("")}
       </div>
 
     </section>
@@ -715,9 +564,9 @@ const pages = {
     <section class="section">
 
       <div class="tiles">
-        ${projects
-          .map((x, i) => card(x, i, "images/project-placeholder.jpg"))
-          .join("")}
+        ${projects.map((x, i) =>
+          card(x, i, "images/project-placeholder.jpg")
+        ).join("")}
       </div>
 
     </section>
@@ -738,42 +587,165 @@ const pages = {
         ${publications.map(pub).join("")}
       </div>
 
-      ${
-        homepage.scholarUrl
-          ? `
-            <a
-              class="outline"
-              href="${esc(homepage.scholarUrl)}"
-              target="_blank"
-              rel="noopener"
-            >
-              Google Scholar ↗
-            </a>
-          `
-          : ""
-      }
+      ${homepage.scholarUrl ? `
+        <a
+          class="outline"
+          href="${esc(homepage.scholarUrl)}"
+          target="_blank"
+          rel="noopener"
+        >
+          Google Scholar ↗
+        </a>
+      ` : ""}
 
     </section>
   `,
 
 
-  // PEOPLE PAGE
-  people: () => `
-    ${intro(
-      "THE PEOPLE BEHIND THE WORK",
-      "Curious minds.<br><em>Shared purpose.</em>",
-      "Meet the researchers, students and collaborators behind INSpIRE."
-    )}
+  
+// PEOPLE PAGE — ACADEMIC TEAM DIRECTORY
 
-    <section class="section">
+people: () => {
 
-      <div class="people-grid">
-        ${team.map(person).join("")}
+  // Organise team members by category
+  const labLead = team.filter(
+    (p) => p.category === "lab-lead"
+  );
+
+  const researchScholars = team.filter(
+    (p) => p.category === "research-scholars"
+  );
+
+  const postgraduateStudents = team.filter(
+    (p) => p.category === "postgraduate-students"
+  );
+
+  // Featured profile for the lab lead
+  const leadProfile = (p) => `
+    <article class="lead-profile">
+
+      <div class="lead-photo">
+        <img
+          src="${esc(asset(p.photo || "images/person-placeholder.jpg"))}"
+          alt="${esc(p.name || "")}"
+        >
       </div>
 
-    </section>
-  `,
+      <div class="lead-details">
 
+        <span class="person-label">LAB LEAD</span>
+
+        <h2>${esc(p.name || "")}</h2>
+
+        <h4>${esc(p.role || "")}</h4>
+
+        <p>${esc(p.bio || "")}</p>
+
+        <div class="profile-links">
+
+          ${p.website ? `
+            <a href="${esc(p.website)}"
+               target="_blank" rel="noopener">
+              Website ↗
+            </a>
+          ` : ""}
+
+          ${p.scholarUrl ? `
+            <a href="${esc(p.scholarUrl)}"
+               target="_blank" rel="noopener">
+              Google Scholar ↗
+            </a>
+          ` : ""}
+
+          ${p.email ? `
+            <a href="mailto:${esc(p.email)}">
+              Email ↗
+            </a>
+          ` : ""}
+
+          ${p.linkedin ? `
+          <a
+            href="${esc(p.linkedin)}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          LinkedIn ↗
+          </a>
+          ` : ""}
+
+        </div>
+
+      </div>
+
+    </article>
+  `;
+
+  // Reusable section for scholars and students
+  const memberSection = (title, subtitle, members) => {
+
+    if (!members.length) return "";
+
+    return `
+      <section class="section people-directory">
+
+        <div class="section-head">
+
+          <div>
+            <div class="eyebrow">OUR PEOPLE</div>
+            <h2>${title}</h2>
+            <p>${subtitle}</p>
+          </div>
+
+        </div>
+
+        <div class="people-grid">
+
+          ${members.map(person).join("")}
+
+        </div>
+
+      </section>
+    `;
+  };
+
+  return `
+
+    ${intro(
+      "THE PEOPLE BEHIND THE RESEARCH",
+      "Meet the <em>INSpIRE Team.</em>",
+      "A collaborative group of researchers and students working towards sustainable and resilient geotechnical infrastructure."
+    )}
+
+    <!-- LAB LEAD -->
+
+    ${labLead.length ? `
+      <section class="section people-directory">
+
+        
+
+        ${labLead.map(leadProfile).join("")}
+
+      </section>
+    ` : ""}
+
+    <!-- RESEARCH SCHOLARS -->
+
+    ${memberSection(
+      "Research Scholars",
+      "Doctoral researchers advancing knowledge through scientific investigation.",
+      researchScholars
+    )}
+
+    <!-- POSTGRADUATE STUDENTS -->
+
+    ${memberSection(
+      "Postgraduate Students",
+      "Young researchers exploring new ideas and engineering solutions.",
+      postgraduateStudents
+    )}
+
+  `;
+},
 
   // NEWS PAGE
   news: () => `
@@ -786,9 +758,9 @@ const pages = {
     <section class="section">
 
       <div class="tiles">
-        ${news
-          .map((x, i) => card(x, i, "images/news-placeholder.jpg"))
-          .join("")}
+        ${news.map((x, i) =>
+          card(x, i, "images/news-placeholder.jpg")
+        ).join("")}
       </div>
 
     </section>
@@ -815,18 +787,14 @@ const pages = {
           Jharkhand, India 826004
         </p>
 
-        ${
-          homepage.contactEmail
-            ? `
-              <a
-                class="primary"
-                href="mailto:${esc(homepage.contactEmail)}"
-              >
-                ${esc(homepage.contactEmail)} ↗
-              </a>
-            `
-            : ""
-        }
+        ${homepage.contactEmail ? `
+          <a
+            class="primary"
+            href="mailto:${esc(homepage.contactEmail)}"
+          >
+            ${esc(homepage.contactEmail)} ↗
+          </a>
+        ` : ""}
 
       </div>
 
@@ -836,9 +804,9 @@ const pages = {
 };
 
 
-// --------------------------------------------------
-// 13. RENDER THE CURRENT PAGE
-// --------------------------------------------------
+// ==================================================
+// 10. RENDER THE SELECTED PAGE
+// ==================================================
 
 document.querySelector("#app").innerHTML =
   header +
@@ -846,15 +814,17 @@ document.querySelector("#app").innerHTML =
   footer;
 
 
-// --------------------------------------------------
-// 14. MOBILE NAVIGATION MENU
-// --------------------------------------------------
+// ==================================================
+// 11. MOBILE NAVIGATION
+// ==================================================
 
 const menu = document.querySelector(".menu");
 const navEl = document.querySelector("nav");
 
 menu?.addEventListener("click", () => {
+
   const open = navEl.classList.toggle("open");
 
   menu.setAttribute("aria-expanded", String(open));
+
 });

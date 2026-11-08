@@ -12,7 +12,7 @@ const page = document.body.dataset.page || "home";
 
 // Load all content JSON files
 const files = import.meta.glob(
-  "../content/{research,projects,publications,team,news}/*.json",
+  "../content/{research,projects,publications,team,news,recruitment}/*.json",
   {
     eager: true,
     import: "default",
@@ -34,6 +34,7 @@ const projects = get("projects");
 const publications = get("publications");
 const team = get("team");
 const news = get("news");
+const recruitment = get("recruitment");
 
 // ==================================================
 // 3. HELPER FUNCTIONS
@@ -69,6 +70,11 @@ const nav = [
   ["Publications", "publications.html", "publications"],
   ["People", "people.html", "people"],
   ["News", "news.html", "news"],
+
+  ...(homepage.recruitmentEnabled
+    ? [["Recruitment", "recruitment.html", "recruitment"]]
+    : []),
+
   ["Contact", "contact.html", "contact"],
 ];
 
@@ -228,6 +234,54 @@ const card = (x, i, fallback) => `
 
   </article>
 `;
+
+// TEXT-ONLY RECRUITMENT CARD
+
+const recruitmentCard = (item) => `
+  <article class="recruitment-card">
+
+    <div class="recruitment-card-top">
+      <span class="recruitment-label">
+        ${esc(item.category || "Research Opportunity")}
+      </span>
+
+      <span class="recruitment-status">
+        ${esc(item.status || "Applications Open")}
+      </span>
+    </div>
+
+    <h3>${esc(item.title || "")}</h3>
+
+    <p>${esc(item.summary || "")}</p>
+
+    ${item.eligibility ? `
+      <div class="recruitment-detail">
+        <b>Eligibility</b>
+        <span>${esc(item.eligibility)}</span>
+      </div>
+    ` : ""}
+
+    ${item.deadline ? `
+      <div class="recruitment-detail">
+        <b>Application deadline</b>
+        <span>${esc(item.deadline)}</span>
+      </div>
+    ` : ""}
+
+    ${item.applicationUrl ? `
+      <a
+        class="under"
+        href="${esc(item.applicationUrl)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Application details ↗
+      </a>
+    ` : ""}
+
+  </article>
+`;
+
 
 // Publication format
 const pub = (p, i) => `
@@ -800,6 +854,38 @@ people: () => {
 
     </section>
   `,
+
+  
+// RECRUITMENT PAGE
+
+recruitment: () => `
+  ${intro(
+    "JOIN OUR RESEARCH TEAM",
+    "Research <em>opportunities.</em>",
+    "Explore opportunities to work with INSpIRE Lab at IIT (ISM) Dhanbad."
+  )}
+
+  <section class="section">
+
+    ${
+      recruitment.length
+        ? `
+          <div class="recruitment-grid">
+            ${recruitment
+              .map(recruitmentCard)
+              .join("")}
+          </div>
+        `
+        : `
+          <p>
+            There are currently no recruitment announcements.
+            Please check again for future opportunities.
+          </p>
+        `
+    }
+
+  </section>
+`,
 
 };
 

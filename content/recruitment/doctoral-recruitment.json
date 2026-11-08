@@ -2,9 +2,10 @@
   "title": "Doctoral Research Opportunities",
   "category": "PhD Admissions",
   "status": "Applications Open",
-  "summary": "Applications are invited from motivated candidates interested in pursuing doctoral research at INSpIRE Lab.",
-  "eligibility": "As per the applicable IIT (ISM) PhD admission requirements.",
-  "deadline": "Add actual deadline",
-  "applicationUrl": "https://www.iitism.ac.in/",
+  "summary": "Applications are invited from motivated candidates interested in pursuing doctoral research at INSpIRE Lab",
+  "eligibility": "As per the applicable IIT (ISM) PhD admission requirements",
+  "experience": "Should have relevant experience in numerical techniques and software like ABAQUS, COMSOL, and/or OpenSees",
+  "deadline": "Applications are open year-round",
+  "applicationUrl": "https://admissions.iitism.ac.in/phd/index.php/admission",
   "order": 1
 }

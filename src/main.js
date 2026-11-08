@@ -663,6 +663,16 @@ people: () => {
             </a>
           ` : ""}
 
+          ${p.linkedin ? `
+          <a
+            href="${esc(p.linkedin)}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          LinkedIn ↗
+          </a>
+          ` : ""}
+
         </div>
 
       </div>

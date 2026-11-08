@@ -1,8 +1,10 @@
+
 media:
   - name: images
     label: Images
     input: public/images
     output: /images
+
 content:
   - name: homepage
     label: Homepage
@@ -10,14 +12,39 @@ content:
     path: content/homepage.json
     fields:
       - { name: heroTitle, label: Hero title, type: string }
-      - { name: heroAccent, label: Accent line, type: string }
-      - { name: tagline, label: Tagline, type: string }
-      - { name: heroVideo, label: Hero video URL (optional), type: string }
+      - { name: heroAccent, label: Hero accent, type: string }
+      - { name: tagline, label: Tagline, type: text }
+      - { name: heroVideo, label: Hero video URL, type: string }
       - { name: heroPoster, label: Hero poster image, type: string }
       - { name: aboutTitle, label: About heading, type: string }
       - { name: aboutText, label: About text, type: text }
       - { name: contactEmail, label: Contact email, type: string }
       - { name: scholarUrl, label: Google Scholar URL, type: string }
+      - { name: recruitmentEnabled, label: Show Recruitment tab, type: boolean }
+
+  - name: team
+    label: People
+    type: collection
+    path: content/team
+    filename: "{slug}.json"
+    fields:
+      - { name: name, label: Name, type: string }
+      - { name: slug, label: Slug, type: string }
+      - name: category
+        label: Member category
+        type: select
+        options:
+          values:
+            - { label: Lab Lead, value: lab-lead }
+            - { label: Research Scholars, value: research-scholars }
+            - { label: Postgraduate Students, value: postgraduate-students }
+      - { name: role, label: Role, type: string }
+      - { name: bio, label: Short biography, type: text }
+      - { name: photo, label: Profile photo, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: linkedin, label: LinkedIn URL, type: string }
+      - { name: order, label: Display order, type: number }
+
   - name: research
     label: Research themes
     type: collection
@@ -30,19 +57,21 @@ content:
       - { name: summary, label: Summary, type: text }
       - { name: image, label: Image, type: string }
       - { name: order, label: Display order, type: number }
+
   - name: projects
     label: Projects
     type: collection
     path: content/projects
     filename: "{slug}.json"
     fields:
-      - { name: title, label: Title, type: string }
+      - { name: title, label: Project title, type: string }
       - { name: slug, label: Slug, type: string }
-      - { name: status, label: Status, type: string }
+      - { name: status, label: Project status, type: string }
       - { name: summary, label: Summary, type: text }
-      - { name: image, label: Image, type: string }
+      - { name: image, label: Project image, type: string }
       - { name: collaborators, label: Collaborators, type: string }
       - { name: order, label: Display order, type: number }
+
   - name: publications
     label: Publications
     type: collection
@@ -51,32 +80,35 @@ content:
     fields:
       - { name: title, label: Paper title, type: string }
       - { name: slug, label: Slug, type: string }
-      - { name: authors, label: Authors, type: string }
-      - { name: venue, label: Journal / conference, type: string }
+      - { name: authors, label: Authors, type: text }
+      - { name: venue, label: Journal or conference, type: string }
       - { name: year, label: Year, type: number }
       - { name: doi, label: DOI or URL, type: string }
-      - { name: featured, label: Featured, type: boolean }
-  - name: team
-    label: People
-    type: collection
-    path: content/team
-    filename: "{slug}.json"
-    fields:
-      - { name: name, label: Name, type: string }
-      - { name: slug, label: Slug, type: string }
-      - { name: role, label: Role, type: string }
-      - { name: bio, label: Short bio, type: text }
-      - { name: photo, label: Photo path, type: string }
-      - { name: email, label: Email, type: string }
-      - { name: order, label: Display order, type: number }
+      - { name: featured, label: Featured publication, type: boolean }
+
   - name: news
     label: News
     type: collection
     path: content/news
     filename: "{slug}.json"
     fields:
-      - { name: title, label: Title, type: string }
+      - { name: title, label: News title, type: string }
       - { name: slug, label: Slug, type: string }
       - { name: date, label: Date, type: date }
       - { name: summary, label: Summary, type: text }
-      - { name: link, label: Link, type: string }
+      - { name: link, label: External link, type: string }
+
+  - name: recruitment
+    label: Recruitment
+    type: collection
+    path: content/recruitment
+    filename: "{slug}.json"
+    fields:
+      - { name: title, label: Position title, type: string }
+      - { name: category, label: Position category, type: string }
+      - { name: status, label: Recruitment status, type: string }
+      - { name: summary, label: Description, type: text }
+      - { name: eligibility, label: Eligibility, type: text }
+      - { name: deadline, label: Application deadline, type: string }
+      - { name: applicationUrl, label: Application URL, type: string }
+      - { name: order, label: Display order, type: number }

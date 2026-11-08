@@ -7,7 +7,8 @@ export default defineConfig({
   base: "/inspire-lab/",
   build: {
     rollupOptions: {
-      input: Object.fromEntries(pages.map((page) => [page.replace(".html", ""), resolve(process.cwd(), page)]))
+      input: Object.fromEntries(pages.map((page) => [page.replace(".html", ""), resolve(process.cwd(), page)])),
+      recruitment: resolve(__dirname, "recruitment.html")
     }
   }
 });

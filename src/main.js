@@ -65,10 +65,10 @@ const logo = asset("images/inspire-logo2.png");
 const nav = [
   ["Home", "index.html", "home"],
   ["About", "about.html", "about"],
+  ["People", "people.html", "people"],
   ["Research", "research.html", "research"],
   ["Projects", "projects.html", "projects"],
   ["Publications", "publications.html", "publications"],
-  ["People", "people.html", "people"],
   ["News", "news.html", "news"],
 
   ...(homepage.recruitmentEnabled

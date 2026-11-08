@@ -1080,3 +1080,91 @@ footer {
 
 }
 
+
+/* =========================================
+   RECRUITMENT PAGE
+========================================= */
+
+.recruitment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.recruitment-card {
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e3e9e3;
+  border-left: 4px solid #587d65;
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.recruitment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+}
+
+.recruitment-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.recruitment-label {
+  color: #587d65;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.recruitment-status {
+  color: #28734b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.recruitment-card h3 {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.recruitment-card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #626d65;
+}
+
+.recruitment-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.recruitment-detail b {
+  color: #294b36;
+}
+
+.recruitment-detail span {
+  color: #68736b;
+}
+
+.recruitment-card .under {
+  display: inline-block;
+  margin-top: 22px;
+}
+
+@media (max-width: 650px) {
+  .recruitment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recruitment-card {
+    padding: 22px;
+  }
+}

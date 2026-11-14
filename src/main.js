@@ -615,8 +615,6 @@ const pages = {
       "Research with practical relevance and measurable impact."
     )}
 
-    Coming soon!
-
      <section class="section">
 
      <div class="tiles">

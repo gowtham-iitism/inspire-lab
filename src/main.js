@@ -837,6 +837,7 @@ people: () => {
         <h2>Connect with INSpIRE Lab</h2>
 
         <p>
+          New Academic Complex #325<br>
           Department of Civil Engineering<br>
           IIT (ISM) Dhanbad<br>
           Jharkhand, India 826004

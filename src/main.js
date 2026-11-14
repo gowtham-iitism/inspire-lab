@@ -489,8 +489,8 @@ const home = () => {
 
     </section>
 
-/*
-    <!-- FEATURED PROJECTS -->
+<!--
+<!-- FEATURED PROJECTS SECTION DISABLED -->
 
     <section class="section">
 
@@ -508,7 +508,7 @@ const home = () => {
       </div>
 
       <div class="tiles">
-      ${projects.slice(0, 3).map((x, i) =>
+        ${projects.slice(0, 3).map((x, i) =>
           card(x, i, "images/project-placeholder.jpg")
         ).join("")}
       </div>
@@ -518,7 +518,8 @@ const home = () => {
       </a>
 
     </section>
-*/
+
+    -->
 
     <!-- CONTACT BANNER -->
 

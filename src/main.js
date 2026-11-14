@@ -489,7 +489,7 @@ const home = () => {
 
     </section>
 
-
+/*
     <!-- FEATURED PROJECTS -->
 
     <section class="section">
@@ -518,7 +518,7 @@ const home = () => {
       </a>
 
     </section>
-
+/*
 
     <!-- CONTACT BANNER -->
 

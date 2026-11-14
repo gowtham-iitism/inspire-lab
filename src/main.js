@@ -615,13 +615,15 @@ const pages = {
       "Research with practical relevance and measurable impact."
     )}
 
-    <section class="section">
+    Coming soon!
 
-      <div class="tiles">
-        ${projects.map((x, i) =>
-          card(x, i, "images/project-placeholder.jpg")
-        ).join("")}
-      </div>
+    // <section class="section">
+
+   //   <div class="tiles">
+   //     ${projects.map((x, i) =>
+   //       card(x, i, "images/project-placeholder.jpg")
+   //     ).join("")}
+   //   </div>
 
     </section>
   `,

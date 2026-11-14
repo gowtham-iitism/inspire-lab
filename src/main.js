@@ -617,13 +617,13 @@ const pages = {
 
     Coming soon!
 
-    // <section class="section">
+     <section class="section">
 
-   //   <div class="tiles">
-   //     ${projects.map((x, i) =>
-   //       card(x, i, "images/project-placeholder.jpg")
-   //     ).join("")}
-   //   </div>
+     <div class="tiles">
+       ${projects.map((x, i) =>
+          card(x, i, "images/project-placeholder.jpg")
+        ).join("")}
+      </div>
 
     </section>
   `,

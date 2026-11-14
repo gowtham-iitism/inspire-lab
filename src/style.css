@@ -49,7 +49,7 @@ video {
     background: #111a1e;
     color: #d7dedb;
 
-    font-size: 10px;
+    font-size: 14px;
     letter-spacing: .13em;
 }
 
@@ -100,7 +100,7 @@ video {
     align-items: center;
     gap: 21px;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -118,7 +118,7 @@ video {
     display: none;
     border: 0;
     background: none;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
 }
 

@@ -490,34 +490,34 @@ const home = () => {
     </section>
 
 
-   // <!-- FEATURED PROJECTS -->
+    <!-- FEATURED PROJECTS -->
 
-   // <section class="section">
+    <section class="section">
 
-   //   <div class="section-head">
+      <div class="section-head">
 
-   //     <div>
-   //       <div class="eyebrow">RESEARCH IN ACTION</div>
-   //       <h2>Selected <em>projects.</em></h2>
-   //     </div>
+        <div>
+          <div class="eyebrow">RESEARCH IN ACTION</div>
+          <h2>Selected <em>projects.</em></h2>
+        </div>
 
-   //     <p>
-   //       Explore selected research projects from INSpIRE Lab.
-   //     </p>
+        <p>
+          Explore selected research projects from INSpIRE Lab.
+        </p>
 
-   //   </div>
+      </div>
 
-   //   <div class="tiles">
-  //      ${projects.slice(0, 3).map((x, i) =>
-  //        card(x, i, "images/project-placeholder.jpg")
-  //      ).join("")}
-   //   </div>
+      <div class="tiles">
+      ${projects.slice(0, 3).map((x, i) =>
+          card(x, i, "images/project-placeholder.jpg")
+        ).join("")}
+      </div>
 
-   //   <a class="under" href="${BASE}projects.html">
-   //     View all projects ↗
-   //   </a>
+      <a class="under" href="${BASE}projects.html">
+        View all projects ↗
+      </a>
 
-   // </section>
+    </section>
 
 
     <!-- CONTACT BANNER -->

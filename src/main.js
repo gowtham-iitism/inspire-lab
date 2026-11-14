@@ -29,8 +29,8 @@ const get = (folder) =>
     .map(([, value]) => value)
     .sort((a, b) => (a.order || 0) - (b.order || 0));
 
-const research = get("research");
-const projects = get("projects");
+const research = get("research"); 
+// const projects = get("projects");
 const publications = get("publications");
 const team = get("team");
 const news = get("news");

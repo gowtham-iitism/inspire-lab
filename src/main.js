@@ -518,7 +518,7 @@ const home = () => {
       </a>
 
     </section>
-/*
+*/
 
     <!-- CONTACT BANNER -->
 

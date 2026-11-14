@@ -632,7 +632,7 @@ const pages = {
     ${intro(
       "KNOWLEDGE & DISCOVERY",
       "Ideas that <em>move us forward.</em>",
-      "Selected publications and scholarly contributions from INSpIRE."
+      "Publications and scholarly contributions from INSpIRE."
     )}
 
     <section class="section dark">

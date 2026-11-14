@@ -489,8 +489,8 @@ const home = () => {
 
     </section>
 
-<!--
-<!-- FEATURED PROJECTS SECTION DISABLED -->
+    <!--
+    FEATURED PROJECTS SECTION (TEMPORARILY HIDDEN)
 
     <section class="section">
 
@@ -518,7 +518,6 @@ const home = () => {
       </a>
 
     </section>
-
     -->
 
     <!-- CONTACT BANNER -->
